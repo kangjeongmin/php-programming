@@ -36,7 +36,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="logo" href="index.html"><img src="img/logo.svg" alt="Logo"></a>
+          <a class="logo" href="index.php"><img src="img/logo.svg" alt="Logo"></a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -46,12 +46,34 @@
         </div><!--/.navbar-collapse -->
       </div>
     </div>
-        
-    <header>
+
+    <?PHP
+        $current_month = date('m');
+
+        if($current_month<3 || $current_month>10){
+            $bg_img_url="img/header-bg.jpg";
+
+        }
+        else if($current_month>2 && $current_month<6) {
+            $bg_img_url="https://ppss.kr/wp-content/uploads/2016/03/1-33-540x249.jpg";
+
+        }
+        else if($current_month>5 && $current_month<9){
+            $bg_img_url="http://t1.daumcdn.net/liveboard/ptravel/d3127d78dd8d407dad1ca0847225e691.JPG";
+
+        }
+        else{
+            $bg_img_url="https://image.ytn.co.kr/general/jpg/2017/1006/201710060302305651_t.jpg";
+
+        }
+
+    ?>
+
+    <header style="background: url('<?PHP echo $bg_img_url; ?>')  center center;">
       <div class="container">
         <div class="row">
           <div class="col-xs-6">
-            <a href="index.html"><img src="img/logo.svg" alt="Logo"></a>
+            <a href="index.php"><img src="img/logo.svg" alt="Logo"></a>
           </div>
           <div class="col-xs-6 signin text-right navbar-nav">
             <a href="#pricing" class="scroll">Pricing</a>&nbsp; &nbsp;<a href="#">Sign in</a>
