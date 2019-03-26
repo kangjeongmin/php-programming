@@ -1,6 +1,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?
-    $connect = mysql_connect("localhost","root","1234");
+    $connect = mysql_connect("localhost","root","1234"); #내 id,비밀번호
     mysql_select_db("test", $connect);
 
     $sql = "insert into biz_card (num, name, company, tel, hp, address)";
