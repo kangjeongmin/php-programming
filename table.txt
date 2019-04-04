@@ -1,0 +1,9 @@
+create table tableboard_shop(
+num int,
+date char(20),
+order_id int,
+name char(20),
+price int,
+quantity int,
+primary key(num)
+);
