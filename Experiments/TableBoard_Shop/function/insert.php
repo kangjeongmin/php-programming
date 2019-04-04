@@ -23,7 +23,7 @@ $sql="insert into tableboard_shop(num,date,order_id,name,price,quantity)
 echo $sql;
 
 
-$result = mysql_query($sql,$connect);
+//$result = mysql_query($sql,$connect);
 
 mysql_close($connect);
 echo "<script> alert('insert - error message') </script>"
