@@ -26,24 +26,119 @@
 
 [여기에 테이블 생성 시, 사용한 Query 를 작성하세요.]
 Note: 
-- table 이름은 tableboard_shop 으로 생성
-- 기본키는 num 으로, 그 외의 속성은 board_form.php 의 input 태그 name 에 표시된 속성 이름으로 생성
-- 각 속성의 type 은 자유롭게 설정 (단, 입력되는 값의 타입과 일치해야 함)
-    - ex) price -> int
-    - ex) name -> char or varchar
-    
+- tableboard_shop인 tabel 생성
+- 기본키=num
+- 입력값의 타입과 일치하도록 속성의 타입을 설정
+  
 ## index.php 수정
 [여기에 index.php 를 어떻게 수정했는지, 설명을 작성하세요.]
+```
+(1) SQL Code
+- TABLE에 있는 모든 DB를 가져오는 SQL문을 작성
+- $numOfrow = 전체 DB의 갯수
+<?php
+    # TODO: MySQL 데이터베이스 연결 및 레코드 가져오기!
+    $connect = mysql_connect("localhost", "kjm", "1234"); // MySQL 데이터베이스 연결
+    mysql_select_db("kjm_db", $connect); // DB 선택
+    $sql = "select * from tableboard_shop";  // sql 쿼리 string 생성
+    $result = mysql_query($sql);  // sql 쿼리 실행
+    $numOfrow = @mysql_num_rows($result);   // 선택된 sql 갯수
+?>
 
-## board_form.php 수정
-[여기에 board_form.php 를 어떻게 수정했는지, 설명을 작성하세요.]
+(2) HTML Code
+- $row = @mysql_fetch_row($result) DB를 받아옴
+- 받아온 DB의 값을 $row[index]에지정
+<?php
+    # TODO : 아래 표시되는 내용을, MySQL 테이블에 있는 레코드로 대체하기!
+    # Note : column6 에 해당하는 Total 은 Price 값과 Quantity 값의 곱으로 표시!
+        for($i=0;$i<$numOfrow;$i++) {
+                $row = mysql_fetch_row($result);
+                echo '<tr onclick="location.href = (\'board_form.php?num='; echo $i+1;echo '\')">';
+                echo '<td class="column1">'; echo $row[1]; echo '</td>';
+                echo '<td class="column2">'; echo $row[2]; echo '</td>';
+                echo '<td class="column3">'; echo $row[3]; echo '</td>';
+                echo '<td class="column4">'; echo '$'; echo $row[4]; echo '</td>';
+                echo '<td class="column5">'; echo $row[5]; echo '</td>';
+                echo '<td class="column6">'; echo '$'; echo $row[4]*$row[5]; echo '</td>';
+                echo '</tr>';
+         }
+?>
+```
 
 ## function
+
 ### insert.php 수정
 [여기에 insert.php 를 어떻게 수정했는지, 설명을 작성하세요.]
+```
+- $_POST를 이용해 Value 값들을 받아옴
+<?php
+/**
+ * Created by PhpStorm.
+ * User: kim2
+ * Date: 2019-04-04
+ * Time: 오전 9:39
+ */
+
+# TODO: MySQL DB에서, POST로 받아온 내용 입력하기!
+$connect = mysql_connect("localhost", "kjm", "1234");
+mysql_select_db("kjm_db", $connect); // DB 선택
+$sql = "insert into tableboard_shop(date,orderid, name, price, quantity) 
+             values('$_POST[date]','$_POST[order_id]','$_POST[name]','$_POST[price]','$_POST[quantity]')"; // sql 쿼리 string 생성
+$result = mysql_query($sql); // sql 쿼리 실행
+# 참고 : 에러 메시지 출력 방법
+if(!$result) {
+    echo "<script> alert('ERROR!!'); </script>";
+}
+mysql_close();
+
+?>
+```
 
 ### update.php 수정
 [여기에 update.php 를 어떻게 수정했는지, 설명을 작성하세요.]
+```
+- DB를 입력한 값으로 수정
+- $_GET[num] 수정할 DB를 찾음
+<?php
+/**
+ * Created by PhpStorm.
+ * User: kim2
+ * Date: 2019-04-04
+ * Time: 오전 9:39
+ */
 
+# TODO: MySQL DB에서, num에 해당하는 레코드를 POST로 받아온 내용으로 수정하기!
+$connect = mysql_connect("localhost", "kjm", "1234");
+mysql_select_db("kjm_db", $connect); // DB 선택
+$sql = "update tableboard_shop set date ='$_POST[date]',orderid ='$_POST[order_id]', name='$_POST[name]',price='$_POST[price]',quantity='$_POST[quantity]' where num = $_GET[num]"; // sql 쿼리 string 생성
+$result = mysql_query($sql);  // sql 쿼리 실행
+# 참고 : 에러 메시지 출력 방법
+if(!$result) {
+    echo "<script> alert('update - error message') </script>";
+}
+
+?>
+```
 ### delete.php 수정
 [여기에 delete.php 를 어떻게 수정했는지, 설명을 작성하세요.]
+```
+<?php
+/**
+ * Created by PhpStorm.
+ * User: kim2
+ * Date: 2019-04-04
+ * Time: 오전 9:39
+ */
+# TODO: MySQL DB에서, num에 해당하는 레코드 삭제하기!
+$connect = mysql_connect("localhost", "kjm", "1234");
+mysql_select_db("kjm_db", $connect); // DB 선택
+$sql = "delete from tableboard_shop where num = $_GET[num]"; // sql 쿼리 string 생성
+$result = mysql_query($sql); // sql 쿼리 실행
+# 참고 : 에러 메시지 출력 방법
+echo "<script> alert('delete - error message') </script>"
+?>
+
+<script>
+    location.replace('../index.php');
+</script>
+```
