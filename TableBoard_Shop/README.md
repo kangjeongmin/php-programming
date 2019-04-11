@@ -32,9 +32,9 @@ Note:
   
 ## index.php 수정
 [여기에 index.php 를 어떻게 수정했는지, 설명을 작성하세요.]
-```
 - TABLE에 있는 모든 DB를 가져오는 SQL문을 작성
 - $numOfrow = 전체 DB의 갯수
+```
 <?php
     # TODO: MySQL 데이터베이스 연결 및 레코드 가져오기!
     $connect = mysql_connect("localhost", "kjm", "1234"); // MySQL 데이터베이스 연결
@@ -67,9 +67,9 @@ Note:
 
 ### insert.php 수정
 [여기에 insert.php 를 어떻게 수정했는지, 설명을 작성하세요.]
-```
-$sql = "insert into tableboard_shop을 이용해 안에 들어갈 타입에 알맞은 값을 받아 values들을 넣어준다. 
+- $sql = "insert into tableboard_shop을 이용해 안에 들어갈 타입에 알맞은 값을 받아 values들을 넣어준다. 
 - $_POST를 이용해 Value 값들을 받아옴
+```
 <?php
 /**
  * Created by PhpStorm.
@@ -95,10 +95,10 @@ mysql_close();
 
 ### update.php 수정
 [여기에 update.php 를 어떻게 수정했는지, 설명을 작성하세요.]
-```
-$sql = "update tableboard_shop set date를 이용해 업데이트할 값들을 타입에 알맞은 값을 받아 업데이트해준다.
+- $sql = "update tableboard_shop set date를 이용해 업데이트할 값들을 타입에 알맞은 값을 받아 업데이트해준다.
 - DB를 입력한 값으로 수정
 - $_GET[num] 수정할 DB를 찾음
+```
 <?php
 /**
  * Created by PhpStorm.
@@ -120,9 +120,10 @@ if(!$result) {
 ?>
 ```
 ### delete.php 수정
+[여기에 delete.php 를 어떻게 수정했는지, 설명을 작성하세요.]
+- delete from tableboard_shop where num = $_GET[num]문을 사용해 num이 기본키 이므로 num을 삭제해준다. 
+- alter table tableboard_shop auto_increment=1 문을 이용해 테이블에 저장된 값을 삭제해준다. 
 ```
-delete from tableboard_shop where num = $_GET[num]문을 사용해 num이 기본키 이므로 num을 삭제해준다. 
-alter table tableboard_shop auto_increment=1 문을 이용해 테이블에 저장된 값을 삭제해준다. 
 <?php
 /**
  * Created by PhpStorm.
