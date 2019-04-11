@@ -9,7 +9,8 @@
 # TODO: MySQL DB에서, num에 해당하는 레코드 삭제하기!
 $connect = mysql_connect("localhost", "kjm", "1234");
 mysql_select_db("kjm_db", $connect); // DB 선택
-$sql = "delete from tableboard_shop where num = $_GET[num]"; // sql 쿼리 string 생성
+$sql = "delete from tableboard_shop where num = '$_GET[num]'"; // sql 쿼리 string 생성
+echo $sql;
 $result = mysql_query($sql); // sql 쿼리 실행
 
 $sql2 = "set @cnt =0";
