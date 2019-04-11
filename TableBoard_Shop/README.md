@@ -81,7 +81,7 @@ Note:
 # TODO: MySQL DB에서, POST로 받아온 내용 입력하기!
 $connect = mysql_connect("localhost", "kjm", "1234");
 mysql_select_db("kjm_db", $connect); // DB 선택
-$sql = "insert into tableboard_shop(date,orderid, name, price, quantity) 
+$sql = "insert into tableboard_shop(date,order_id, name, price, quantity) 
              values('$_POST[date]','$_POST[order_id]','$_POST[name]','$_POST[price]','$_POST[quantity]')"; // sql 쿼리 string 생성
 $result = mysql_query($sql); // sql 쿼리 실행
 # 참고 : 에러 메시지 출력 방법
@@ -110,7 +110,7 @@ mysql_close();
 # TODO: MySQL DB에서, num에 해당하는 레코드를 POST로 받아온 내용으로 수정하기!
 $connect = mysql_connect("localhost", "kjm", "1234");
 mysql_select_db("kjm_db", $connect); // DB 선택
-$sql = "update tableboard_shop set date ='$_POST[date]',orderid ='$_POST[order_id]', name='$_POST[name]',price='$_POST[price]',quantity='$_POST[quantity]' where num = $_GET[num]"; // sql 쿼리 string 생성
+$sql = "update tableboard_shop set date ='$_POST[date]',order_id ='$_POST[order_id]', name='$_POST[name]',price='$_POST[price]',quantity='$_POST[quantity]' where num = $_GET[num]"; // sql 쿼리 string 생성
 $result = mysql_query($sql);  // sql 쿼리 실행
 # 참고 : 에러 메시지 출력 방법
 if(!$result) {
