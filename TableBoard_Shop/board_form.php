@@ -42,7 +42,7 @@ if(isset($_GET[num])) {
 			<a href="index.php" style="border: 1px; padding: 10px; background: #36304a; display: block; width: 100px; text-align: center; border-radius: 10px; margin-bottom: 5px;"> Back </a>
             <?php
                 if(isset($_GET[num])) {
-                    echo "<form method=\"POST\" action=\"function/update.php\">";
+                    echo "<form method=\"POST\" action=\"function/update.php?num=$_GET[num]\">";
                 } else {
                     echo "<form method=\"POST\" action=\"function/insert.php\">";
                 }
