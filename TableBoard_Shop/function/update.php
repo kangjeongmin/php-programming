@@ -11,7 +11,9 @@ $connect = mysql_connect("localhost", "kjm", "1234");
 // DB 선택
 mysql_select_db("kjm_db", $connect);
 // sql 쿼리 string 생성
-$sql = "update tableboard_shop set date ='$_POST[date]',orderid ='$_POST[order_id]', name='$_POST[name]',price='$_POST[price]',quantity='$_POST[quantity]' where num = $_GET[num]";
+$sql = "update tableboard_shop set date ='$_POST[date]',order_id ='$_POST[order_id]', name='$_POST[name]',
+        price='$_POST[price]',quantity='$_POST[quantity]' where num = '$_GET[num]'";
+echo $sql;
 // sql 쿼리 실행
 $result = mysql_query($sql);
 # 참고 : 에러 메시지 출력 방법
@@ -22,5 +24,5 @@ if(!$result) {
 ?>
 
 <script>
-    location.replace('../index.php');
+    //location.replace('../index.php');
 </script>
