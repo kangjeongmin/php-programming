@@ -33,7 +33,6 @@ Note:
 ## index.php 수정
 [여기에 index.php 를 어떻게 수정했는지, 설명을 작성하세요.]
 ```
-(1) SQL Code
 - TABLE에 있는 모든 DB를 가져오는 SQL문을 작성
 - $numOfrow = 전체 DB의 갯수
 <?php
@@ -45,7 +44,6 @@ Note:
     $numOfrow = mysql_num_rows($result);   // 선택된 sql 갯수
 ?>
 
-(2) HTML Code
 - $row = mysql_fetch_row($result) DB를 받아옴
 - 받아온 DB의 값을 $row[index]에지정
 <?php
@@ -70,6 +68,7 @@ Note:
 ### insert.php 수정
 [여기에 insert.php 를 어떻게 수정했는지, 설명을 작성하세요.]
 ```
+$sql = "insert into tableboard_shop을 이용해 안에 들어갈 타입에 알맞은 값을 받아 values들을 넣어준다. 
 - $_POST를 이용해 Value 값들을 받아옴
 <?php
 /**
@@ -97,6 +96,7 @@ mysql_close();
 ### update.php 수정
 [여기에 update.php 를 어떻게 수정했는지, 설명을 작성하세요.]
 ```
+$sql = "update tableboard_shop set date를 이용해 업데이트할 값들을 타입에 알맞은 값을 받아 업데이트해준다.
 - DB를 입력한 값으로 수정
 - $_GET[num] 수정할 DB를 찾음
 <?php
@@ -120,8 +120,9 @@ if(!$result) {
 ?>
 ```
 ### delete.php 수정
-[여기에 delete.php 를 어떻게 수정했는지, 설명을 작성하세요.]
 ```
+delete from tableboard_shop where num = $_GET[num]문을 사용해 num이 기본키 이므로 num을 삭제해준다. 
+alter table tableboard_shop auto_increment=1 문을 이용해 테이블에 저장된 값을 삭제해준다. 
 <?php
 /**
  * Created by PhpStorm.
