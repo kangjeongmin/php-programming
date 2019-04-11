@@ -11,8 +11,9 @@ $connect = mysql_connect("localhost", "kjm", "1234");
 // DB 선택
 mysql_select_db("kjm_db", $connect);
 // sql 쿼리 string 생성
-$sql = "insert into tableboard_shop(date,orderid, name, price, quantity) 
+$sql = "insert into tableboard_shop(date,order_id, name, price, quantity) 
              values('$_POST[date]','$_POST[order_id]','$_POST[name]','$_POST[price]','$_POST[quantity]')";
+echo $sql;
 // sql 쿼리 실행
 $result = mysql_query($sql);
 # 참고 : 에러 메시지 출력 방법
@@ -26,3 +27,4 @@ mysql_close();
 <script>
     location.replace('../index.php');
 </script>
+
